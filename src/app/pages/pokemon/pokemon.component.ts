@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-pokemon',
-  templateUrl: './pokemon.component.html',
-  styleUrls: ['./pokemon.component.scss']
+  template: `
+              <p>pokemon works!</p>
+              <router-outlet></router-outlet>
+              `
 })
 export class PokemonComponent implements OnInit {
 
