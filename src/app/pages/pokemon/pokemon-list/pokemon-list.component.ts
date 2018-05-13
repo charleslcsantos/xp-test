@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PokemonService } from '../pokemon.service';
-import { PokemonModel } from '../pokemon.model';
+import { PokemonModel, BasicInfo } from '../pokemon.model';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -18,6 +18,12 @@ export class PokemonListComponent implements OnInit {
     this.pokemonService.getAll().subscribe((pokemons: PokemonModel[]) => {
       this.pokemons = pokemons;
     });
+  }
+
+  public getPokemonId(pokemon: BasicInfo) {
+    const regex = /\/\d+/g;
+    const id = pokemon.url.match(regex)[0];
+    return id;
   }
 
 }

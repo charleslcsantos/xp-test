@@ -1,3 +1,18 @@
 <p>
   pokemon-list works!
 </p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Pokemon</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let pokemon of pokemons">
+      <td>
+        <a [routerLink]="'/pokemon/'+ getPokemonId(pokemon)" routerLinkActive="router-link-active" > {{pokemon.name}} </a>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -17,4 +17,8 @@ export class PokemonService {
     return this.httpClient.get(`${environment.API}/pokemon`)
     .map(res => res['results']);
   }
+
+  public getById(id): Observable<PokemonModel> {
+    return this.httpClient.get(`${environment.API}/pokemon/${id}`) as Observable<PokemonModel>;
+  }
 }
