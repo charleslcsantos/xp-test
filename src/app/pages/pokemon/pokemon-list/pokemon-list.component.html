@@ -16,3 +16,5 @@
     </tr>
   </tbody>
 </table>
+<a (click)="pagination(previous)" *ngIf="pokemons.previous" class="btn btn-default">Anterior</a>
+<a (click)="pagination(next)" *ngIf="pokemons.next" class="btn btn-default">Próximo</a>

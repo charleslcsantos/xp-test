@@ -9,7 +9,8 @@ const routes: Routes = [
     path: '',
     component: PokemonComponent,
     children: [
-      { path: 'all', pathMatch: 'full', component: PokemonListComponent },
+      { path: '', pathMatch: 'full', redirectTo: 'all' },
+      { path: 'all', component: PokemonListComponent },
       { path: ':id', component: PokemonDetailComponent }
     ]
   }

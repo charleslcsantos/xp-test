@@ -15,6 +15,10 @@ export class PokemonListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getPokemons();
+  }
+
+  public getPokemons() {
     this.pokemonService.getAll().subscribe((pokemons: PokemonModel[]) => {
       this.pokemons = pokemons;
     });
@@ -24,6 +28,12 @@ export class PokemonListComponent implements OnInit {
     const regex = /\/\d+/g;
     const id = pokemon.url.match(regex)[0];
     return id;
+  }
+
+  public pagination(way) {
+    if (way === 'next') {
+      
+    }
   }
 
 }
