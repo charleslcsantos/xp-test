@@ -8,6 +8,7 @@ import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.componen
 import { PokemonComponent } from './pokemon.component';
 import { PokemonService } from './pokemon.service';
 import { LoaderComponent } from '../../components/loader/loader.component';
+import { RouterModule } from '@angular/router';
 
 const COMPONENTS = [
   PokemonComponent,
@@ -19,8 +20,9 @@ const COMPONENTS = [
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule,
     PokemonRoutingModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   declarations: COMPONENTS,
   providers: [ PokemonService ]
