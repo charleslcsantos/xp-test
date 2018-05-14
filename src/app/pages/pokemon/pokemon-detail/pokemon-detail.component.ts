@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PokemonModel } from '../pokemon.model';
 import { PokemonService } from '../pokemon.service';
@@ -14,6 +14,7 @@ import {
   selector: 'app-pokemon-detail',
   templateUrl: './pokemon-detail.component.html',
   styleUrls: ['./pokemon-detail.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   animations: [
     trigger('flyInOut', [
       state('in', style({transform: 'translateX(0)'})),
@@ -35,6 +36,7 @@ import {
 })
 export class PokemonDetailComponent implements OnInit {
   public pokemon: PokemonModel;
+  public showLoader = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -49,7 +51,10 @@ export class PokemonDetailComponent implements OnInit {
   }
 
   getPokemon(id) {
-    this.pokemonService.getById(id).subscribe(p => this.pokemon = p);
+    this.pokemonService.getById(id).subscribe(p => {
+      this.pokemon = p;
+      this.showLoader = false;
+    });
   }
 
 }

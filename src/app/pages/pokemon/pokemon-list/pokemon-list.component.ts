@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { PokemonService } from '../pokemon.service';
 import { PokemonModel, BasicInfo, PokemonListModel } from '../pokemon.model';
 import {
@@ -13,6 +13,7 @@ import {
   selector: 'app-pokemon-list',
   templateUrl: './pokemon-list.component.html',
   styleUrls: ['./pokemon-list.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   animations: [
     trigger('flyInOut', [
       state('in', style({transform: 'translateX(0)'})),
@@ -38,6 +39,7 @@ export class PokemonListComponent implements OnInit {
     next: string,
     previous: string,
   };
+  public showLoader: boolean;
 
   constructor(
     private pokemonService: PokemonService
@@ -48,12 +50,14 @@ export class PokemonListComponent implements OnInit {
   }
 
   public getPokemons(url?) {
+    this.showLoader = true;
     this.pokemonService.getAll(url).subscribe((res: PokemonListModel) => {
       this.pokemons = res.results;
       this.pagination = {
         next: res.next,
         previous: res.previous
       };
+      this.showLoader = false;
     });
   }
 

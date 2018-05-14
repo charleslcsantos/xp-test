@@ -5,12 +5,10 @@ import { AppComponent } from './app.component';
 import { Routes, RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
-import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoaderComponent,
   ],
   imports: [
     BrowserModule,

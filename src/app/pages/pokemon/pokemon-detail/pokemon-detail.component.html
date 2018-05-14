@@ -1,4 +1,5 @@
 <section class="pokemon-detail__wrapper" [@flyInOut]="state">
+  <app-loader *ngIf="showLoader"></app-loader>
   <header class="pokemon-detail__header">
     <button class="btn btn-outline-light btn-sm" routerLink="/pokemon/all">Voltar para listagem</button>
   </header>
