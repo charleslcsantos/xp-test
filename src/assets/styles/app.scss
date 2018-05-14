@@ -1,3 +1,21 @@
-@import "bootstrap";
+@import "bootstrap/bootstrap";
 @import "variables";
 @import "mixins/responsive";
+
+@import "components/loader";
+
+html {
+	@include min-desktop-size {
+		font-size: 1.2em;
+	}
+	@include max-tablet-size {
+		font-size: 1.15em;
+	}
+	@include max-mobile-size {
+		font-size: 1em;
+	}
+}
+
+body {
+  overflow: hidden;
+}

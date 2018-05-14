@@ -1,13 +1,12 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'app-pokemon',
-  template: `
-    <router-outlet></router-outlet>
-  `,
+  selector: 'app-loader',
+  templateUrl: './loader.component.html',
+  styleUrls: ['./loader.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class PokemonComponent implements OnInit {
+export class LoaderComponent implements OnInit {
 
   constructor() { }
 

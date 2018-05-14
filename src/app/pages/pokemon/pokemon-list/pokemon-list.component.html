@@ -1,20 +1,23 @@
-<p>
-  pokemon-list works!
-</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Pokemon</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let pokemon of pokemons">
-      <td>
-        <a [routerLink]="'/pokemon/'+ getPokemonId(pokemon)" routerLinkActive="router-link-active" > {{pokemon.name}} </a>
-      </td>
-    </tr>
-  </tbody>
-</table>
-<a (click)="pagination(previous)" *ngIf="pokemons.previous" class="btn btn-default">Anterior</a>
-<a (click)="pagination(next)" *ngIf="pokemons.next" class="btn btn-default">Próximo</a>
+<section class="pokemon-list__wrapper" [@flyInOut]="state">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="pokemon-list__header">
+          <h2 class="pokemon-list__title">Lista de Pokemons</h2>
+        </div>
+        <div class="pokemon-list__items">
+          <div class="pokemon-list__item" *ngFor="let pokemon of pokemons">
+            <a class="pokemon-list__item-link" [routerLink]="'/pokemon/'+ getPokemonId(pokemon)" routerLinkActive="router-link-active" > {{pokemon.name}} </a>
+          </div>
+        </div>
+        <div class="row pokemon-list__footer">
+          <div class="col-md-12">
+            <button (click)="goTo('previous')" *ngIf="pagination?.previous" class="btn btn-sm btn-light m-2">Página anterior</button>
+            <button (click)="goTo('next')" *ngIf="pagination?.next" class="btn btn-sm btn-light m-2">Próxima página</button>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>

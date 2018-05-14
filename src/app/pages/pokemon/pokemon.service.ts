@@ -4,7 +4,7 @@ import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
-import { PokemonModel } from './pokemon.model';
+import { PokemonModel, PokemonListModel } from './pokemon.model';
 
 @Injectable()
 export class PokemonService {
@@ -13,9 +13,11 @@ export class PokemonService {
     private httpClient: HttpClient,
   ) { }
 
-  public getAll(): Observable<PokemonModel[]> {
-    return this.httpClient.get(`${environment.API}/pokemon`)
-    .map(res => res['results']);
+  public getAll(url?): Observable<PokemonListModel> {
+    if (url) {
+      return this.httpClient.get(url) as Observable<PokemonListModel>;
+    }
+    return this.httpClient.get(`${environment.API}/pokemon`) as Observable<PokemonListModel>;
   }
 
   public getById(id): Observable<PokemonModel> {

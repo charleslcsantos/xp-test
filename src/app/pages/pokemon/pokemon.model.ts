@@ -66,3 +66,10 @@ export interface PokemonModel {
   base_experience: number;
   types: Type[];
 }
+
+export interface PokemonListModel {
+  count: number;
+  next: string;
+  previous: string;
+  results: PokemonModel[];
+}

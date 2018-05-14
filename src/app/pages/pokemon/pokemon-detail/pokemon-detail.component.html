@@ -1,4 +1,23 @@
-<p>
-  pokemon-detail works!
-</p>
-<h2>{{pokemon?.name}}</h2>
+<section class="pokemon-detail__wrapper" [@flyInOut]="state">
+  <header class="pokemon-detail__header">
+    <button class="btn btn-outline-light btn-sm" routerLink="/pokemon/all">Voltar para listagem</button>
+  </header>
+  <div class="pokemon-detail__body">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-8 col-md-5 col-lg-4 m-auto">
+            <div class="pokemon-card">
+              <div class="pokemon-card__pic" [style.background-image]="pokemon ? ('url(' + pokemon.sprites.front_default + ')') : ''"></div>
+              <h2 class="pokemon-card__title">{{pokemon?.name}}</h2>
+              <div class="pokemon-card__abilities">
+                <h3 class="abilities__title">Habilidades</h3>
+                <div class="pokemon-ability" *ngFor="let p of pokemon?.abilities">
+                  <div class="pokemon-abitlity__name" *ngIf="!p.is_hidden">{{p.ability.name}}</div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

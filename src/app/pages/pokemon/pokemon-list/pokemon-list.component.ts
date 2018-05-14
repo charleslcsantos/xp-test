@@ -1,14 +1,43 @@
 import { Component, OnInit } from '@angular/core';
 import { PokemonService } from '../pokemon.service';
-import { PokemonModel, BasicInfo } from '../pokemon.model';
+import { PokemonModel, BasicInfo, PokemonListModel } from '../pokemon.model';
+import {
+  trigger,
+  state,
+  transition,
+  style,
+  animate
+} from '@angular/animations';
 
 @Component({
   selector: 'app-pokemon-list',
   templateUrl: './pokemon-list.component.html',
-  styleUrls: ['./pokemon-list.component.scss']
+  styleUrls: ['./pokemon-list.component.scss'],
+  animations: [
+    trigger('flyInOut', [
+      state('in', style({transform: 'translateX(0)'})),
+      transition(':enter', [
+        style({
+          transform: 'translateY(6%)',
+          opacity: 0
+        }),
+        animate('600ms cubic-bezier(0.25, 0.46, 0.45, 0.94)')
+      ]),
+      transition(':leave', [
+        animate('200ms ease-in', style({
+          transform: 'translateY(-100%)',
+          opacity: 0
+        }))
+      ])
+    ])
+  ]
 })
 export class PokemonListComponent implements OnInit {
   public pokemons: PokemonModel[];
+  public pagination: {
+    next: string,
+    previous: string,
+  };
 
   constructor(
     private pokemonService: PokemonService
@@ -18,9 +47,13 @@ export class PokemonListComponent implements OnInit {
     this.getPokemons();
   }
 
-  public getPokemons() {
-    this.pokemonService.getAll().subscribe((pokemons: PokemonModel[]) => {
-      this.pokemons = pokemons;
+  public getPokemons(url?) {
+    this.pokemonService.getAll(url).subscribe((res: PokemonListModel) => {
+      this.pokemons = res.results;
+      this.pagination = {
+        next: res.next,
+        previous: res.previous
+      };
     });
   }
 
@@ -30,10 +63,8 @@ export class PokemonListComponent implements OnInit {
     return id;
   }
 
-  public pagination(way) {
-    if (way === 'next') {
-      
-    }
+  public goTo(way) {
+    this.getPokemons(this.pagination[way]);
   }
 
 }
